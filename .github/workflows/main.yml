@@ -26,11 +26,10 @@ jobs:
       - name: Create .env file from GitHub secret
         run: echo "${{ secrets.AQI_FETCHER_SECRETS }}" > .env
 
-      - name: Create service_account.json from GitHub secret
-        run: echo "${{ secrets.SERVICE_ACCOUNT_JSON }}" > service_account.json
-
       - name: Run main.py
         run: python main.py
+        env:
+          SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
 
       - name: Upload CSV to GitHub Actions artifacts (optional)
         uses: actions/upload-artifact@v4

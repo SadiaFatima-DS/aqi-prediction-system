@@ -2,11 +2,12 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 import os
+import json
 
 # -----------------------------
 # Configuration
 # -----------------------------
-SERVICE_ACCOUNT_FILE = 'service_accounts.json'
+SERVICE_ACCOUNT_FILE = json.loads(os.environ['SERVICE_ACCOUNT_JSON'])
 SCOPES = ['https://www.googleapis.com/auth/drive']
 CSV_FILE = 'lahore_aqi_iqair.csv'
 FOLDER_ID = '100x3cRbI-JzrNAKjhBrnnYR_5ZUktJQZ'
