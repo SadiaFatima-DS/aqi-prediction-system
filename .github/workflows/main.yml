@@ -30,3 +30,9 @@ jobs:
           CITY: ${{ secrets.CITY }}
           STATE: ${{ secrets.STATE }}
           COUNTRY: ${{ secrets.COUNTRY }}
+
+      - name: Upload AQI CSV as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lahore-aqi-csv
+          path: lahore_aqi_iqair.csv
