@@ -8,9 +8,7 @@ __pycache__/
 # Virtual environment
 venv/
 .venv/
-env/
-env.bak/
-*.env
+
 
 # Ignore Cache Files
 .idea
