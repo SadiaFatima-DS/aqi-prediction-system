@@ -23,15 +23,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run fetch_aqi_data.py
-        run: python fetch_aqi_data.py
-        env:
-          AQI_PROJECT: ${{ secrets.AQI_PROJECT }}
-          CITY: ${{ secrets.CITY }}
-          STATE: ${{ secrets.STATE }}
-          COUNTRY: ${{ secrets.COUNTRY }}
+      - name: Create .env file from GitHub secret
+        run: echo "${{ secrets.AQI_FETCHER_SECRETS }}" > .env
 
-      - name: Upload AQI CSV as Artifact
+      - name: Create service_account.json from GitHub secret
+        run: echo "${{ secrets.SERVICE_ACCOUNT_JSON }}" > service_account.json
+
+      - name: Run main.py
+        run: python main.py
+
+      - name: Upload CSV to GitHub Actions artifacts (optional)
         uses: actions/upload-artifact@v4
         with:
           name: lahore-aqi-csv
