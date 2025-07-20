@@ -1,15 +1,18 @@
 import requests
+from datetime import datetime
 import csv
 import os
-from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # -----------------------
 # Configuration
 # -----------------------
-API_KEY = "05855708-8f1d-4339-a75d-16d144e8f49b"
-CITY = "Lahore"
-STATE = "Punjab"
-COUNTRY = "Pakistan"
+API_KEY = os.getenv("AQI_PROJECT")
+CITY = os.getenv("CITY")
+STATE = os.getenv("STATE")
+COUNTRY = os.getenv("COUNTRY")
 
 URL = f"https://api.airvisual.com/v2/city?city={CITY}&state={STATE}&country={COUNTRY}&key={API_KEY}"
 CSV_FILE = "lahore_aqi_iqair.csv"
