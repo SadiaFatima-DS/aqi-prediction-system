@@ -37,14 +37,14 @@ def fetch_aqi():
 def save_to_csv(timestamp, aqi):
     file_exists = os.path.isfile(CSV_FILE)
 
-    # if file_exists:
-    #     with open(CSV_FILE, "r") as csvfile:
-    #         reader = csv.reader(csvfile)
-    #         next(reader, None)  # Skip header
-    #         for row in reader:
-    #             if row and row[0] == timestamp:
-    #                 print(f"Timestamp {timestamp} already exists. Skipping save.")
-    #                 return
+    if file_exists:
+        with open(CSV_FILE, "r") as csvfile:
+            reader = csv.reader(csvfile)
+            next(reader, None)  # Skip header
+            for row in reader:
+                if row and row[0] == timestamp:
+                    print(f"Timestamp {timestamp} already exists. Skipping save.")
+                    return
 
     # Save new data
     with open(CSV_FILE, "a", newline="") as csvfile:
